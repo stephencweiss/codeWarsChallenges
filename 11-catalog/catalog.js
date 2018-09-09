@@ -122,14 +122,3 @@ function catalog(s, article) {
     */
 
 }
-
-
-
-
-
-catalog(s,"ladder")
-
-
-Expected: 
-'table saw > prx: $1099.99 qty: 5\r\nsaw > prx: $9 qty: 10\r\nsaw for metal > prx: $13.80 qty: 32', instead got: 
-'table saw > prx: $1099.99 qty: 5\r\nsaw > prx: $9 qty: 10\r\nsaw for metal > prx: $13.8 qty: 32'
