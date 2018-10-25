@@ -7,33 +7,49 @@ function solve(n){
     C: A,B >= 0, O(n) - Sublinear
     E: Negative numbers
     */
+  // let lower, upper;
+
+  // if (n % 2 === 0){
+  //   lower = n/2 - 1;
+  //   upper = n/2 + 1;
+  // } else {
+  //   lower = Math.floor(n/2);
+  //   upper = lower + 1;
+  // }
+  // console.log(lower, upper)
+
+  // return lower.toString().concat(upper.toString())
+  //   .split('')
+  //   .reduce((acc, val) => {return Number(acc) + Number(val)})
+
+
+
+
+
 
   let memo = {}
 
-  let a = 0, b = n, maxDigitSum = digitSum(a,b)
+  let a = 0, b = n, maxDigitSum = 0;
+
   while (a <= b ) {
-    let stringVersion = numA.toString().concat(numB.toString());
+    let stringVersion = a.toString().concat(b.toString());
     let arrOfDigits = stringVersion.split('')
     let sortedArr = arrOfDigits.sort()
     let key = sortedArr.join();
+    let currentDigitSum
     if (!memo[key]){
-      let currentDigitSum = digitSum(sortedArr, memo)
-      if (currentDigitSum > maxDigitSum) {
+      currentDigitSum = sortedArr.reduce((acc, val) => {return Number(acc) + Number(val)})
+      memo[key] = Number(currentDigitSum);
+    }
+    if (currentDigitSum > maxDigitSum) {
         maxDigitSum = currentDigitSum;
-      }
     }
     a++; b--;
   }
+  console.log(memo)
+  console.log(Object.keys(memo).length)
   return maxDigitSum
 
 }
 
-let memo = {}
-
-function digitSum(arr, memo) {
-  let reducer = (acc, val) => {return Number(acc) + Number(val)};
-  memo[key] = Number(sortedArr.reduce(reducer));
-  return memo[key]
-}
-
-solve(10)
+console.log(solve(7019)); // 35
