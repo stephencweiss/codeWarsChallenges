@@ -42,3 +42,9 @@ function findUniq(arr) {
 // Test.assertEquals(findUniq([ 3, 10, 3, 3, 3 ]), 10);
 
 console.log(findUniq([  1, 1, 1, 2, 1, 1 ]));
+
+// SHORTER solution
+
+const findUniqShort = (arr) => {
+  return Number(arr.filter( (el) => { return arr.indexOf(el) == arr.lastIndexOf(el) }));
+}
