@@ -7,20 +7,20 @@ function sc(time,km){
   */
   // Find time from midnight
   debugger;
-  let pickUpTime = 0;
+  let pickUpTime;
   let timeOfArrival = time.split(':');
-  let minutesArrivedAfterMidnight = Number(timeOfArrival[0])*60+Number(timeOfArrival[1])
+  let minutesIShowedUpAfterMidnightToWait = Number(timeOfArrival[0])*60+Number(timeOfArrival[1])
   // Find the time it will take the bus to get to you (traveling at a constant 30 km/h)
-  let timeToYou = km/30 * 60/1  // returns time in minutes (km / km/h * m/h = m)
+  let timeItTakesBusToGetToYou = Math.round(km/30 * 60/1)  // returns time in minutes (km / km/h * m/h = m)
   // Find the departure time that is equivalent to the time you start - the time it took to get to you
-  let departureTime = (minutesArrivedAfterMidnight - timeToYou)
+  let departureTime = (minutesIShowedUpAfterMidnightToWait - timeItTakesBusToGetToYou)
   while ( departureTime % 15 !== 0) {
     // If this is not on the quarter hour, find the next quarter hour
-    departureTime++
+    departureTime++;
   }
   if ( departureTime >= 6*60 && departureTime <= 20*60) {
-    pickUpTime = departureTime+timeToYou
-  } else { pickUpTime = 6*60 + timeToYou }
+    pickUpTime = departureTime+timeItTakesBusToGetToYou
+  } else { pickUpTime = 6*60 + timeItTakesBusToGetToYou }
   while (pickUpTime >= 1440) {
     pickUpTime = pickUpTime - 1440
   } 
@@ -29,4 +29,4 @@ function sc(time,km){
   return hour.concat(":", minutes)
 }
 
-console.log(sc('14:16',248))
+console.log(sc('01:03',498))
